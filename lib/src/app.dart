@@ -15,7 +15,6 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-
   }
 
 
@@ -25,14 +24,9 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          // to be defined here
+          //TODO: Define a theme
         ),
-        home: Scaffold(
-          appBar: AppBar(
-            title: Text("EmiNews"),
-          ),
-          body: HomePage(),
-        ),
+        home: HomePage(),
 
       ),
 

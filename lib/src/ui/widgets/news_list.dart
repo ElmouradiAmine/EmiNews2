@@ -32,7 +32,7 @@ class _NewsListState extends State<NewsList> {
               if (newsList.isNotEmpty) {
                 return _buildList(newsList);
               } else {
-                return Text("There is no news");
+                return Text("There is no news.");
               }
             }
             return Icon(Icons.language);
@@ -47,8 +47,7 @@ class _NewsListState extends State<NewsList> {
       itemCount:  newsList.length,
         itemBuilder: (context,index){
           return NewsCard(
-            title: newsList[index].title,
-            description: newsList[index].body,
+           newsList[index]
           );
         });
 

@@ -13,9 +13,15 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment(0, 0),
-      child: NewsList(),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('EmiNews'),
+        leading: IconButton(icon: Icon(Icons.menu), onPressed: (){}),
+      ),
+      body: Container(
+        alignment: Alignment(0, 0),
+        child: NewsList(),
+      ),
     );
   }
 }

@@ -15,17 +15,21 @@ class NewsBloc {
   List mapToList({List<DocumentSnapshot> docList}){
     List<NewsModel> newsList = [];
     if (docList != null){
-
       docList.forEach((document){
-        String title = document.data["title"];
-        String body = document.data["body"];
-        newsList.add(NewsModel(title, body));
+
+        String title = document.data["title"] ?? "";
+        String description = document.data["description"]?? "";
+        String body = document.data["body"]?? "";
+        String date = document.data["date"]?? "";
+        String authorName = document.data["author"]?? "";
+
+        newsList.add(NewsModel(title, description,body,date,authorName));
+
         return newsList;
       });
     }
     return newsList;
   }
-
 
 
   void dispose(){}
