@@ -23,6 +23,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return NewsBlocProvider(
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           // to be defined here
         ),
