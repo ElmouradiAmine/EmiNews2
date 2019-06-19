@@ -27,9 +27,7 @@ class _MyAppState extends State<MyApp> {
           //TODO: Define a theme
         ),
         home: HomePage(),
-
       ),
-
     );
   }
 }

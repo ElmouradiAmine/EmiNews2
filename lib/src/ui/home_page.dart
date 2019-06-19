@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:emi_news/src/blocs/news_bloc.dart';
 import 'package:emi_news/src/blocs/news_bloc_provider.dart';
 import 'package:emi_news/src/ui/widgets/news_list.dart';
+import 'package:emi_news/src/ui/widgets/drawer.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -16,8 +17,8 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('EmiNews'),
-        leading: IconButton(icon: Icon(Icons.menu), onPressed: (){}),
       ),
+      drawer: MyDrawer(),
       body: Container(
         alignment: Alignment(0, 0),
         child: NewsList(),
