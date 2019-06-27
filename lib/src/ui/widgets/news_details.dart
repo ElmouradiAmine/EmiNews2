@@ -41,29 +41,54 @@ class NewsDetails extends StatelessWidget {
         ),
         elevation: 5.0,
       ),
-      body: Container(
-        child: Column(
-          children: <Widget>[
-            CachedNetworkImage(
-              height: 200,
-              width: double.infinity,
-              fit: BoxFit.fill,
-              placeholder: (context, url) => Container(
-                    height: 200,
-                    width: double.infinity,
-                    child: Center(
-                      child: CircularProgressIndicator(),
-                    ),
+      body: ListView(
+
+        children: <Widget>[
+          CachedNetworkImage(
+            height: 200,
+            width: double.infinity,
+            fit: BoxFit.fill,
+            placeholder: (context, url) => Container(
+                  height: 200,
+                  width: double.infinity,
+                  child: Center(
+                    child: CircularProgressIndicator(),
                   ),
-              imageUrl: _newsModel.imgURL,
-            ),
-            Text(_newsModel.title),
-            Text(_newsModel.description),
-            Text(_newsModel.date),
-            Text(_newsModel.authorName),
-            Text(_newsModel.body),
-          ],
-        ),
+                ),
+            imageUrl: _newsModel.imgURL,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(_newsModel.title,style: TextStyle(
+              color: Colors.red,
+              fontWeight: FontWeight.bold,
+              fontSize: 21.0
+
+            ),),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Text(_newsModel.description, style: TextStyle(
+              fontSize: 18.0,
+              fontWeight: FontWeight.bold
+            ),),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(_newsModel.date + " 19:52", style: TextStyle(
+              fontWeight: FontWeight.bold,
+              color: Colors.grey,
+
+            ),),
+          ),
+          //Text(_newsModel.authorName),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(_newsModel.body,style: TextStyle(
+              fontSize: 16.0
+            ),),
+          ),
+        ],
       ),
     );
   }
