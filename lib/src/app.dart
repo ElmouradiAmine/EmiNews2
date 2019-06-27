@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:emi_news/src/resources/repository.dart';
 import 'package:emi_news/src/blocs/news_bloc_provider.dart';
+import 'package:emi_news/src/blocs/event_bloc_provider.dart';
 import 'package:emi_news/src/ui/home_page.dart';
+import 'package:emi_news/src/ui/pages/login_page.dart';
+import 'package:emi_news/src/blocs/login_bloc_provider.dart';
 
 class MyApp extends StatefulWidget {
 
@@ -20,14 +23,17 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return NewsBlocProvider(
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          //TODO: Define a theme
+    return LoginBlocProvider(
+      child: NewsBlocProvider(
+
+        child: EventBlocProvider(child:MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            //TODO: Define a theme
+          ),
+          home: HomePage("elmouradi.amine98@gmail.com"),
         ),
-        home: HomePage(),
       ),
-    );
+      ));
   }
 }

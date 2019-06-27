@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:emi_news/src/blocs/news_bloc_provider.dart';
+import 'package:emi_news/src/blocs/event_bloc_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:emi_news/src/models/news_model.dart';
-import 'package:emi_news/src/ui/widgets/news_card.dart';
+import 'package:emi_news/src/models/event_model.dart';
+import 'package:emi_news/src/ui/widgets/event_card.dart';
 
-class NewsList extends StatefulWidget {
+class EventList extends StatefulWidget {
   @override
-  _NewsListState createState() => _NewsListState();
+  _EventListState createState() => _EventListState();
 }
 
-class _NewsListState extends State<NewsList> with SingleTickerProviderStateMixin {
-  NewsBloc _bloc;
+class _EventListState extends State<EventList> with SingleTickerProviderStateMixin {
+  EventBloc _bloc;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    _bloc = NewsBlocProvider.of(context);
+    _bloc = EventBlocProvider.of(context);
 
 
   }
@@ -33,11 +33,11 @@ class _NewsListState extends State<NewsList> with SingleTickerProviderStateMixin
     return Container(
       alignment: Alignment(0, 0),
       child: StreamBuilder<QuerySnapshot>(
-          stream: _bloc.getAllNews(),
+          stream: _bloc.getAllEvents(),
           builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){
             if (snapshot.hasData){
               List<DocumentSnapshot> docs = snapshot.data.documents;
-              List<NewsModel> newsList = _bloc.mapToList(docList: docs);
+              List<EventModel> newsList = _bloc.mapToList(docList: docs);
               if (newsList.isNotEmpty) {
                 return _buildList(newsList);
               } else {
@@ -46,17 +46,17 @@ class _NewsListState extends State<NewsList> with SingleTickerProviderStateMixin
             }
             return Icon(Icons.language);
 
-      }),
+          }),
     );
   }
 
 
-  ListView _buildList(List<NewsModel> newsList){
+  ListView _buildList(List<EventModel> eventList){
     return ListView.builder(
-      itemCount:  newsList.length,
+        itemCount:  eventList.length,
         itemBuilder: (context,index){
-          return NewsCard(
-           newsList[index]
+          return EventCard(
+              eventList[index]
           );
         });
 

@@ -2,18 +2,18 @@ import 'dart:async';
 import 'package:rxdart/rxdart.dart';
 import 'package:emi_news/src/resources/repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:emi_news/src/models/news_model.dart';
+import 'package:emi_news/src/models/event_model.dart';
 
-class NewsBloc {
+class EventBloc {
   final _repository = Repository();
 
-  Stream<QuerySnapshot> getAllNews(){
+  Stream<QuerySnapshot> getAllEvents(){
     return _repository.getAllNews();
   }
 
 
   List mapToList({List<DocumentSnapshot> docList}){
-    List<NewsModel> newsList = [];
+    List<EventModel> newsList = [];
     if (docList != null){
       docList.forEach((document){
 
@@ -22,11 +22,8 @@ class NewsBloc {
         String body = document.data["body"]?? "";
         String date = document.data["date"]?? "";
         String authorName = document.data["author"]?? "";
-        String imgURL = document.data["imgURL"]?? "";
-        int views = document.data["views"]?? 0;
 
-
-        newsList.add(NewsModel(title, description,body,date,authorName,imgURL,views));
+        newsList.add(EventModel(title, description,body,date,authorName));
 
         return newsList;
       });

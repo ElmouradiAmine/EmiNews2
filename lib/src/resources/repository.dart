@@ -9,5 +9,12 @@ class Repository {
 
 
 
+  Future<int> authenticateUser(String email, String password) =>
+      _firestoreProvider.authenticateUser(email, password);
+
+  Future<void> registerUser(String email, String password) =>
+      _firestoreProvider.registerUser(email, password);
+
+
 
 }

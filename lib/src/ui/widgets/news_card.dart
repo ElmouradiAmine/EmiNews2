@@ -39,33 +39,43 @@ class NewsCard extends StatelessWidget {
                   child: CircularProgressIndicator(),
                 ),
               ),
-              imageUrl: imgUrl,
+              imageUrl: _newsModel.imgURL,
             ),
             Container(
               height: 200,
               width: double.infinity,
-              child: Align(
-                alignment: Alignment.bottomLeft,
-                child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 4.0,horizontal: 8.0),
-                  color: Colors.black.withOpacity(0.4),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Text(_newsModel.title,style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),),
-                      Text(_newsModel.description,style: TextStyle(
-                        color: Colors.white
-                      ),),
-                    ],
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 4.0,horizontal: 8.0),
+                    child: Text(' ${_newsModel.views} vues • Il y a 1 heure',style: TextStyle(
+                      color: Colors.white
+                          ,
+                      fontSize: 12
+                    ),),
                   ),
-                ),
+                  Container(
+                    padding: EdgeInsets.symmetric(vertical: 4.0,horizontal: 8.0),
+                    color: Colors.black.withOpacity(0.6),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Text(_newsModel.title,style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),),
+                        Text(_newsModel.description,style: TextStyle(
+                          color: Colors.white
+                        ),),
+                      ],
+                    )),
+                ],
               ),
-            )
+            ),
           ],
         ),
       ),

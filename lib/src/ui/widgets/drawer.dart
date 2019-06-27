@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:emi_news/src/blocs/login_bloc_provider.dart';
+import 'package:emi_news/src/blocs/login_bloc.dart';
 
 
 class MyDrawer extends StatelessWidget {
+  final String _email;
+
+  MyDrawer(this._email);
+
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -19,7 +26,7 @@ class MyDrawer extends StatelessWidget {
                 SizedBox(
                 height: 10.0,
                 ),
-                Text("you@example.com"),
+                Text(_email),
               ],
             ),
             decoration: BoxDecoration(
