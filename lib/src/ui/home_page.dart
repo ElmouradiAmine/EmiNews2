@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               children: <Widget>[
                 Icon(Icons.whatshot,color: Colors.red,),
                 SizedBox(width: 10,),
-                Text('News',style: TextStyle(
+                Text('Actualités',style: TextStyle(
                   fontSize: 18,
 
               ),)
@@ -92,7 +92,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
               children: <Widget>[
                 Icon(Icons.event_note,color: Colors.green,),
                 SizedBox(width: 10,),
-                Text('Events',style: TextStyle(
+                Text('Evénements',style: TextStyle(
                   fontSize: 18
 
                 ),)

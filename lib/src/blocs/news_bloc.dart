@@ -24,9 +24,13 @@ class NewsBloc {
         String authorName = document.data["author"]?? "";
         String imgURL = document.data["imgURL"]?? "";
         int views = document.data["views"]?? 0;
+        int comments = document.data["comments"]?? 0;
+        int stars = document.data["stars"]?? 0;
+        String brand = document.data["brand"]?? "";
+        String brandLogoUrl = document.data["brandLogoUrl"]?? "";
 
 
-        newsList.add(NewsModel(title, description,body,date,authorName,imgURL,views));
+        newsList.add(NewsModel(title, description,body,date,authorName,imgURL,views,comments,stars,brand,brandLogoUrl));
 
         return newsList;
       });
