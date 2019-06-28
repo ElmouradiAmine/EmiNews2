@@ -2,17 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:emi_news/src/resources/user_provider.dart';
 
-class  LoginPage extends StatefulWidget {
+class SignUp extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _SignUpState createState() => _SignUpState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignUpState extends State<SignUp> {
   final _formKey = GlobalKey<FormState>();
   final _key = GlobalKey<ScaffoldState>();
 
   TextEditingController _email;
   TextEditingController _password;
+  TextEditingController _confirmPassword;
+  TextEditingController _name;
   bool hidePass = true;
 
   @override
@@ -20,6 +22,8 @@ class _LoginPageState extends State<LoginPage> {
     super.initState();
     _email = TextEditingController();
     _password = TextEditingController();
+    _name = TextEditingController();
+    _confirmPassword = TextEditingController();
   }
 
   @override
@@ -29,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.black,
-        title: Text("Connection"),
+        title: Text("Inscription"),
       ),
       key: _key,
       body: Stack(
@@ -59,7 +63,22 @@ class _LoginPageState extends State<LoginPage> {
                     child: Image.asset("assets/EMILogo.png"),
                   ),
                 ),
-
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(14.0, 8.0, 14.0, 8.0),
+                  child: TextFormField(
+                    controller: _name,
+                    decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.person_outline),
+                        hintText: "Full name",
+                        border: OutlineInputBorder()),
+                    validator: (value) {
+                      if (value.isEmpty) {
+                        return "The name field cannot be empty";
+                      }
+                      return null;
+                    },
+                  ),
+                ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(14.0, 8.0, 14.0, 8.0),
                   child: TextFormField(
@@ -107,6 +126,23 @@ class _LoginPageState extends State<LoginPage> {
                     },
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(14.0, 8.0, 14.0, 8.0),
+                  child: TextFormField(
+                    controller: _confirmPassword,
+                    obscureText: hidePass,
+                    decoration: InputDecoration(
+                        prefixIcon: Icon(Icons.lock_outline),
+                        hintText: "Confirm Password",
+                        border: OutlineInputBorder()),
+                    validator: (value) {
+                      if (value != _password.text) {
+                        return "The passwords don't match";
+                      }
+                      return null;
+                    },
+                  ),
+                ),
                 SizedBox(
                   height: 30.0,
                 ),
@@ -119,10 +155,10 @@ class _LoginPageState extends State<LoginPage> {
                       child: MaterialButton(
                         onPressed: () async {
                           if (_formKey.currentState.validate()) {
-                            if (!await user.signIn(
-                                _email.text, _password.text))
+                            if (!await user.signUp(
+                                _name.text, _email.text, _password.text))
                               _key.currentState.showSnackBar(
-                                  SnackBar(content: Text("Wrong email or password.")));
+                                  SnackBar(content: Text("Sign up failed")));
                             else {
                               Navigator.pop(context);
                             }

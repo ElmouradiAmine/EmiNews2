@@ -31,7 +31,7 @@ class _MyAppState extends State<MyApp> {
           theme: ThemeData(
             //TODO: Define a theme
           ),
-          home: HomePage("elmouradi.amine98@gmail.com"),
+          home: HomePage(),
         ),
       ),
       ));

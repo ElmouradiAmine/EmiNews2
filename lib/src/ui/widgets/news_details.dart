@@ -59,6 +59,33 @@ class NewsDetails extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: <Widget>[
+                Text(
+                  ' ${_newsModel.views} vues • Il y a 1 heure',
+                  style: TextStyle( fontSize: 12),
+                ),
+                Expanded(child: Container()),
+                Icon(Icons.comment,color: Colors.blue,),
+                SizedBox(
+                  width: 5.0,
+                ),
+                Text(_newsModel.comments.toString(),style: TextStyle(
+
+                ),),
+
+                Icon(Icons.star,color: Colors.amber,),
+                SizedBox(
+                  width: 5.0,
+                ),
+                Text(_newsModel.stars.toString(),style: TextStyle(
+
+                ),),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
             child: Text(_newsModel.title,style: TextStyle(
               color: Colors.red,
               fontWeight: FontWeight.bold,
@@ -88,8 +115,66 @@ class NewsDetails extends StatelessWidget {
               fontSize: 16.0
             ),),
           ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Divider(),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: <Widget>[
+                CircleAvatar(
+                  backgroundColor: Colors.black,
+                  child: Icon(Icons.person,color: Colors.white,),
+
+                ),
+                SizedBox(
+                  width: 10.0,
+                ),
+                Flexible(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.max,
+                    children: <Widget>[
+                      Text("@Auteur",style: TextStyle(
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold
+                      ),),
+                      Text(_newsModel.authorName,style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18.0,
+                      ),),
+                      Text('Jeune passionné par le monde infini de l\'information.',style: TextStyle(
+                        color: Colors.grey,
+                        fontStyle: FontStyle.italic
+                      ),)
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Divider(),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              padding: EdgeInsets.symmetric(vertical: 16.0,horizontal: 16.0),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black)
+              ),
+              child: Center(child: Text("Voir commentaires (${_newsModel.comments})")),
+            ),
+          ),
+          SizedBox(
+            height: 30.0,
+          )
         ],
       ),
     );
   }
+
+
 }

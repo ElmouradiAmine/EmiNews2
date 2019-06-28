@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:emi_news/src/blocs/login_bloc_provider.dart';
 import 'package:emi_news/src/blocs/login_bloc.dart';
+import 'package:emi_news/src/ui/pages/signup_page.dart';
+import 'package:provider/provider.dart';
+import 'package:emi_news/src/resources/user_provider.dart';
+import 'package:emi_news/src/ui/pages/login_page.dart';
 
 
 class MyDrawer extends StatelessWidget {
-  final String _email;
 
-  MyDrawer(this._email);
+
+  MyDrawer();
 
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<UserProvider>(context);
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -19,18 +24,32 @@ class MyDrawer extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                CircleAvatar(
-                  child: Icon(Icons.photo_camera),
-                  radius: 40,
-                ),
+//                CircleAvatar(
+//
+//                  child: ,
+//                  radius: 40,
+//                  backgroundColor: Colors.white,
+//                ),
+              Container(
+                width: 80,
+              height: 80,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
+                image: (user.status != Status.Authenticated  || user.userModel.imgUrl  == null    )? null : DecorationImage(image: NetworkImage(user.userModel.imgUrl),fit: BoxFit.cover)
+
+              ),child: user.status != Status.Authenticated || user.userModel.imgUrl == null   ? Icon(Icons.person) : Container() ,
+            ),
                 SizedBox(
                 height: 10.0,
                 ),
-                Text(_email),
+                Text( user.status == Status.Unauthenticated ? "Non connecté(e)" : user.userModel.name ,style: TextStyle(
+                  color: Colors.white
+                ),),
               ],
             ),
             decoration: BoxDecoration(
-              color: Colors.blue,
+              color: Colors.black,
             ),
           ),
           ListTile(
@@ -80,6 +99,49 @@ class MyDrawer extends StatelessWidget {
               // Then close the drawer
               Navigator.pop(context);
             },
+          ),
+          ListTile(
+            leading: Icon(Icons.info,color: Colors.green,),
+            title: Text("Crédits"),
+            onTap: () {
+              // Update the state of the app
+              // ...
+              // Then close the drawer
+              Navigator.pop(context);
+            },
+          ),
+          Divider(),
+          Visibility(
+            visible: user.status == Status.Unauthenticated,
+            child: ListTile(
+              leading: Icon(Icons.person_add,color: Colors.blue,),
+              title: Text('S\'inscrire'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => SignUp()));
+              },
+            ),
+          ),
+          Visibility(
+            visible: user.status == Status.Unauthenticated,
+            child: ListTile(
+              leading: Icon(Icons.account_circle,color: Colors.blue,),
+              title: Text('Se connecter'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+              },
+            ),
+          ),
+          Visibility(
+            visible: user.status != Status.Unauthenticated,
+            child: ListTile(
+              leading: Icon(Icons.exit_to_app,color: Colors.blue,),
+              title: Text('Se déconnecter'),
+              onTap: () {
+                user.signOut();
+              },
+            ),
           ),
 
         ],

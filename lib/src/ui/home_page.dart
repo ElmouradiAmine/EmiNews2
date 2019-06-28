@@ -5,8 +5,8 @@ import 'package:emi_news/src/ui/widgets/drawer.dart';
 
 
 class HomePage extends StatefulWidget {
-  final String _email;
-  HomePage(this._email);
+
+  HomePage();
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: MyDrawer(widget._email),
+      drawer: MyDrawer(),
       appBar: AppBar(
         backgroundColor: Colors.black,
         centerTitle: true,

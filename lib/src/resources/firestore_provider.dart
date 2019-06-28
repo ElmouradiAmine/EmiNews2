@@ -24,7 +24,14 @@ class FirestoreProvider {
         .setData({'email': email, 'password': password, 'isAdmin': false});
   }
 
+  void createUser(Map data) {
+    _firestore.collection("users").document(data["userId"]).setData(data);
+  }
 
+
+  Future<DocumentSnapshot> getUserData(String userId) async {
+    return await _firestore.collection("users").document(userId).get();
+  }
 
 
   Stream<QuerySnapshot> getAllNews() {

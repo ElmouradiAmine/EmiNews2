@@ -111,7 +111,7 @@ class _SignInFormState extends State<SignInForm> {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-              builder: (context) => HomePage(_bloc.emailAddress)));
+              builder: (context) => HomePage()));
     });
   }
 
