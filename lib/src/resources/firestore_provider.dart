@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:math';
 
 class FirestoreProvider {
   Firestore _firestore = Firestore.instance;
@@ -23,6 +24,24 @@ class FirestoreProvider {
         .document(email)
         .setData({'email': email, 'password': password, 'isAdmin': false});
   }
+
+
+
+  Future<void> uploadArticle(String title, String description, String texte, String author, String imgUrl) async {
+    return _firestore
+        .collection("news").add({"title" : title , "description" : description,
+          "author" : author,
+      "imgURL": imgUrl,
+      "body": texte,
+      "date" : DateTime.now().toUtc().toIso8601String().substring(17),
+      "brand": "emi",
+      "brandLogoUrl" : "https://firebasestorage.googleapis.com/v0/b/eminews-534f3.appspot.com/o/logo%2FemiLogo.png?alt=media&token=e388fe40-0206-4763-9df5-ca8b8582014c",
+      "views": Random().nextInt(1000),
+      "stars" : Random().nextInt(1000),
+    });
+
+  }
+
 
   void createUser(Map data) {
     _firestore.collection("users").document(data["userId"]).setData(data);

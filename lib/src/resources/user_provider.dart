@@ -47,6 +47,7 @@ class UserProvider with ChangeNotifier{
         Map<String, dynamic> values = {
           "name":name,
           "email":email,
+
           "userId":user.uid
         };
         _userServices.createUser(values);

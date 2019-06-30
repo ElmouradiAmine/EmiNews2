@@ -5,7 +5,7 @@ import 'package:emi_news/src/ui/pages/signup_page.dart';
 import 'package:provider/provider.dart';
 import 'package:emi_news/src/resources/user_provider.dart';
 import 'package:emi_news/src/ui/pages/login_page.dart';
-
+import 'package:emi_news/src/ui/pages/add_article_page.dart';
 
 class MyDrawer extends StatelessWidget {
 
@@ -50,6 +50,17 @@ class MyDrawer extends StatelessWidget {
             ),
             decoration: BoxDecoration(
               color: Colors.black,
+            ),
+          ),
+          Visibility(
+            visible: (user.status == Status.Authenticated && (user.userModel.isAdmin!= null &&  user.userModel.isAdmin)),
+            child: ListTile(
+              leading:   Icon(Icons.library_add,color:Colors.purple),
+              title: Text('Ajout d\'un article'),
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> AddArticle()));
+              },
             ),
           ),
           ListTile(
