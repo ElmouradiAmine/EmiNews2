@@ -62,7 +62,7 @@ class NewsDetails extends StatelessWidget {
             child: Row(
               children: <Widget>[
                 Text(
-                  ' ${_newsModel.views} vues • Il y a 1 heure',
+                  ' ${_newsModel.views} vues',
                   style: TextStyle( fontSize: 12),
                 ),
                 Expanded(child: Container()),
@@ -102,7 +102,7 @@ class NewsDetails extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text(_newsModel.date + " 19:52", style: TextStyle(
+            child: Text(_newsModel.date, style: TextStyle(
               fontWeight: FontWeight.bold,
               color: Colors.grey,
 

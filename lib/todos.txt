@@ -1,0 +1,5 @@
+- Ajout Article : S'assurer de mettre les fonctions de controls , donner la possibiliter d'ajouter une image
+et aussi faire en sorte que le nom de l'auteur est pris directement depuis le compte actif.
+
+- Faire fonctionner l'onglet évènement
+- Fonctionnaliter commentaire

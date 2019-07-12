@@ -50,7 +50,7 @@ class NewsCard extends StatelessWidget {
                     child: Row(
                       children: <Widget>[
                         Text(
-                          ' ${_newsModel.views} vues • Il y a 1 heure',
+                          ' ${_newsModel.views} vues',
                           style: TextStyle(color: Colors.white, fontSize: 12),
                         ),
                         Expanded(child: Container()),
